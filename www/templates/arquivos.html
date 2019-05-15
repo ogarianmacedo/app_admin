@@ -1,0 +1,85 @@
+<ion-view view-title="{{pagina}}">
+
+	<div class="bar bar-subheader bar-black">
+		<div class="buttons">
+			<button class="button button-icon icon ion-trash-b"
+			ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
+		</div>
+
+		<h1 class="title">Opções</h1>
+
+		<div class="buttons">
+			<button class="button button-icon icon ion-plus-round" ng-click="abreModalArquivo()"></button>
+		</div>
+	</div>
+
+	<ion-content>
+		<h1 class="text-center">{{pagina}}</h1>
+
+		<!-- Lista de usuários e ações -->
+		<ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+			<ion-item ng-repeat="lista in visualizaArquivo | orderBy:'nome'" item="lista" class="item-remove-animate item-icon-left">
+
+				<i class="icon ion-paperclip"></i>
+				<h2>{{lista.nome}}</h2>
+				<p>{{lista.observacao}}</p>
+
+				<a class="button button-light button-outline btn-arq" href="{{baseUrlImagem}}/arquivos/{{lista.anexo}}" type="application/pdf" target="_blank">
+					<i class="icon ion-eye"></i>
+				</a>	
+
+				<ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(lista)">
+				</ion-delete-button>
+
+				<ion-option-button class="button-energized" ng-click="exibirEditar(lista)">
+					Editar
+				</ion-option-button>
+			</ion-item>
+		</ion-list>
+
+		<!-- Modal add e editar usuário -->
+		<script id="modal-arquivo.html" type="text/ng-template">
+			<ion-modal-view>
+
+				<ion-header-bar align-title="center" class="bar-dark">
+					<div class="buttons">
+						<button class="button button-clear icon ion-arrow-left-c" ng-click="fechaModalArquivo()"></button>
+					</div>
+					<h1 class="title" ng-hide="novoArquivo.btnEditar">Adicionar Arquivo</h1>
+					<h1 class="title" ng-show="novoArquivo.btnEditar">Editar Arquivo</h1>
+				</ion-header-bar>
+
+				<ion-content>
+
+					<div class="list">
+						<label class="item item-input item-floating-label">
+							<span class="input-label input-label">Nome</span>
+							<input type="text" class="input-login" placeholder="Nome" ng-model="novoArquivo.nome">
+						</label>
+
+						<label class="item item-input item-floating-label">
+							<span class="input-label input-label">Observação</span>
+							<input type="text" class="input-login" placeholder="Observação" ng-model="novoArquivo.observacao">
+						</label>
+						
+						<div class="fileUpload btn btn-positive btn-full ion-paperclip">
+							Arquivo
+							<input type="file" class="upload" placeholder="Arquivo" id="imagemArquivo">
+						</div>
+					</div>
+
+					<button type="button" class="button button-light button-outline button-full" ng-hide="novoArquivo.btnEditar" ng-click="inserirNoticia(novoArquivo)">
+						Salvar
+					</button>
+
+					<button type="button" class="button button-energized button-outline button-full" ng-show="novoArquivo.btnEditar" ng-click="editarArquivo(novoArquivo)">
+						Editar
+					</button>  
+
+				</ion-content>
+
+			</ion-modal-view>
+		</script>
+
+	</ion-content>
+</ion-view>

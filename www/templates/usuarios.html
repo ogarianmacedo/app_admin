@@ -1,0 +1,99 @@
+<ion-view view-title="{{pagina}}">
+
+  <div class="bar bar-subheader">
+    <div class="buttons">
+      <button class="button button-icon icon ion-trash-b"
+      ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
+    </div>
+
+    <h1 class="title">Opções</h1>
+
+    <div class="buttons">
+      <!-- <button class="button button-positive button-outline" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
+        Reordenar
+      </button> -->
+      <button class="button button-icon icon ion-plus-round" ng-click="abreModalUser()"></button>
+    </div>
+  </div>
+
+  <ion-content>
+
+    <h1 class="text-center">Opções</h1>
+
+    <!-- Lista de usuários e ações -->
+    <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+      <ion-item ng-repeat="lista in visualizaUsuario | orderBy:'usuario'" item="lista" class="item-remove-animate item-thumbnail-left">
+        <!-- href="#/lista/{{lista.id_usuario}}" -->
+
+        <img src="{{baseUrlImagem}}/usuarios/{{lista.imagem}}" alt="" class="img-radius">
+        <h2>{{lista.usuario}}</h2>
+        <p>{{lista.email}}</p>
+
+        <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(lista)">
+        </ion-delete-button>
+
+        <ion-option-button class="button-energized" ng-click="exibirEditar(lista)">
+          Editar
+        </ion-option-button>
+
+        <!-- <ion-reorder-button class="ion-navicon" on-reorder="moveItem(lista, $fromIndex, toIndex)">          
+        </ion-reorder-button> -->
+      </ion-item>
+    </ion-list>
+    
+    <!-- Modal add e editar usuário -->
+    <script id="modal-usuario.html" type="text/ng-template">
+      <ion-modal-view>
+
+        <ion-header-bar align-title="center" class="bar-dark">
+          <div class="buttons">
+            <button class="button button-clear icon ion-arrow-left-c" ng-click="fechaModalUser()"></button>
+          </div>
+          <h1 class="title" ng-hide="novoUsuario.btnEditar">Adicionar Usuário</h1>
+          <h1 class="title" ng-show="novoUsuario.btnEditar">Editar Usuário</h1>
+        </ion-header-bar>
+
+        <ion-content>
+
+          <div class="list">
+            <label class="item item-input item-floating-label">
+              <span class="input-label label-login">Nome Completo</span>
+              <input type="text" class="input-login" placeholder="Nome Completo" ng-model="novoUsuario.nome">
+            </label>
+
+            <label class="item item-input item-floating-label">
+              <span class="input-label label-login">E-mail</span>
+              <input type="email" class="input-login" placeholder="E-mail" ng-model="novoUsuario.email">
+            </label>
+
+            <label class="item item-input item-floating-label">
+              <span class="input-label label-login">Usuário</span>
+              <input type="text" class="input-login" placeholder="Usuário" ng-model="novoUsuario.usuario">
+            </label>
+
+            <label class="item item-input item-floating-label">
+              <span class="input-label label-login">Senha</span>
+              <input type="password" class="input-login" placeholder="Senha" ng-model="novoUsuario.senha">
+            </label>
+
+            <div class="fileUpload btn btn-positive btn-full ion-image">
+              <span>Imagem</span>
+              <input type="file" class="upload" placeholder="Imagem" id="imagemUsuario">
+            </div>
+          </div>
+
+          <button type="button" class="button button-light button-outline button-full" ng-hide="novoUsuario.btnEditar" ng-click="inserirUsuario(novoUsuario)">
+            Salvar
+          </button>
+
+          <button type="button" class="button button-energized button-outline button-full" ng-show="novoUsuario.btnEditar" ng-click="editarUsuario(novoUsuario)">
+            Editar
+          </button>  
+
+        </ion-content>
+
+      </ion-modal-view>
+    </script>
+
+  </ion-content>
+</ion-view>

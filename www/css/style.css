@@ -1,0 +1,150 @@
+/* Empty. Add your own CSS if you like */
+h1, h2, h3, h4, p, span, i{
+	color: #fff !important;
+}
+
+.p-alert{
+	color: #444 !important;
+}
+
+ion-content{
+	/* background: -webkit-linear-gradient(0deg, #444444 0%, #0a9dc7 100%) !important; */
+	background: url(../img/login-wall.jpg) no-repeat top center !important;
+}
+
+.list .item, .list .item-complex .item-content {
+	background: rgba(255,255,255,0);
+}
+
+.item .item-content.activated {
+	background-color: #358788 !important;
+}
+
+.item {
+	border-color: transparent !important;
+	color:  #fff !important;
+}
+
+.bar-subheader {
+	top: 44px;
+	height: 44px;
+	background: #444444 !important;
+}
+
+.bar-subheader .button, h1{
+	color: #fff;
+}
+
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+	margin: 10px;
+}
+
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+.btn {
+	border-color: transparent;
+	background-color: #f8f8f8;
+	/* color: #444; */
+	position: relative;
+	display: inline-block;
+	margin: 0;
+	padding: 0 12px;
+	min-width: 52px;
+	min-height: 47px;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 4px;
+	vertical-align: top;
+	text-align: center;
+	text-overflow: ellipsis;
+	font-size: 16px;
+	line-height: 42px;
+	cursor: pointer;
+}
+
+.btn.btn-positive {
+	border-color: transparent;
+	background-color: #444444;
+	color: #fff;
+}
+
+.btn.btn-full {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: block;
+	margin-right: 0;
+	margin-left: 0;
+	border-right-width: 0;
+	border-left-width: 0;
+	border-radius: 0;
+}
+
+.content-login{
+	background: url(../img/login-wall.jpg) no-repeat top center !important;
+	width: 100%;
+}
+
+.form-login{
+	padding-top: 150px;
+	width: 80%;
+	margin-left: 10%;
+}
+
+.form-login-input{
+	display: block;
+	background-color: transparent;
+	box-shadow: none;
+	border: transparent;
+}
+
+.label-login {
+	display: table;
+	padding: 7px 10px 7px 0px;
+	max-width: 200px;
+	width: 35%;
+	color: #fff;
+	font-size: 16px;
+}
+
+.input-login {
+	color: #fff !important;
+	font-size: 18px !important;
+}
+
+.btn-num{
+	border-radius: 50%;
+	margin-left: 55%;
+}
+
+.card-dash{
+	padding-top: 2px !important;
+	padding-bottom: 4px !important;
+	box-shadow: none !important;
+	background: transparent !important;
+}
+
+.img-radius{
+	border-radius: 10px;
+}
+
+.btn-arq{
+	border-radius: 50%;
+	margin-left: 90%;
+	margin-top: -32px;
+}
+
+.ico-input-search{
+	color: #444 !important
+}

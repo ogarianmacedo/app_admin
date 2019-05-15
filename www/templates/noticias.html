@@ -1,0 +1,83 @@
+<ion-view view-title="{{pagina}}">
+	
+	<div class="bar bar-subheader">
+		<div class="buttons">
+			<button class="button button-icon icon ion-trash-b"
+			ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
+		</div>
+
+		<h1 class="title">Opções</h1>
+
+		<div class="buttons">
+			<button class="button button-icon icon ion-plus-round" ng-click="abreModalNoticia()"></button>
+		</div>
+	</div>
+
+	<ion-content>
+		<h1 class="text-center">Opções</h1>
+		
+		<ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+			<ion-item ng-repeat="lista in visualizaNoticia | orderBy:'titulo'" item="lista" class="item-remove-animate item-thumbnail-left">
+
+				<img src="{{baseUrlImagem}}/noticias/{{lista.imagem}}" alt="" class="img-radius">
+				<h2>{{lista.titulo}}</h2>
+				<p>{{lista.descricao}}</p>
+				<p>Criado: {{lista.data_criacao}}</p>
+				<!-- <p>Editado: {{lista.data_editado}}</p> -->
+
+				<ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(lista)">
+				</ion-delete-button>
+
+				<ion-option-button class="button-energized" ng-click="exibirEditar(lista)">
+					Editar
+				</ion-option-button>
+
+			</ion-item>
+		</ion-list>
+
+		<!-- Modal add e editar notícias -->
+		<script id="modal-noticia.html" type="text/ng-template">
+			<ion-modal-view>
+
+				<ion-header-bar align-title="center" class="bar-dark">
+					<div class="buttons">
+						<button class="button button-clear icon ion-arrow-left-c" ng-click="fechaModalNoticia()"></button>
+					</div>
+					<h1 class="title" ng-hide="novaNoticia.btnEditar">Adicionar Notícia</h1>
+					<h1 class="title" ng-show="novaNoticia.btnEditar">Editar Notícia</h1>
+				</ion-header-bar>
+
+				<ion-content>
+
+					<div class="list">
+						<label class="item item-input item-floating-label">
+							<span class="input-label label-login">Título</span>
+							<input type="text" class="input-login" placeholder="Título" ng-model="novaNoticia.titulo">
+						</label>
+
+						<label class="item item-input item-floating-label">
+							<span class="input-label label-login">Descrição</span>
+							<input type="text" class="input-login" placeholder="Descrição" ng-model="novaNoticia.descricao">
+						</label>
+
+						<div class="fileUpload btn btn-positive btn-full ion-image">
+							<span>Imagem</span>
+							<input type="file" class="upload" placeholder="Imagem" id="imagemNoticia">
+						</div>
+					</div>
+
+					<button type="button" class="button button-light button-outline button-full" ng-hide="novaNoticia.btnEditar" ng-click="inserirNoticia(novaNoticia)">
+						Salvar
+					</button>
+
+					<button type="button" class="button button-energized button-outline button-full" ng-show="novaNoticia.btnEditar" ng-click="editarNoticia(novaNoticia)">
+						Editar
+					</button>  
+
+				</ion-content>
+
+			</ion-modal-view>
+		</script>
+
+	</ion-content>
+</ion-view>

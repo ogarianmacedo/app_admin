@@ -1,0 +1,93 @@
+<ion-view view-title="{{pagina}}">
+
+	<div class="bar bar-subheader">
+		<div class="buttons">
+			<button class="button button-icon icon ion-trash-b"
+			ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
+		</div>
+
+		<h1 class="title">Opções</h1>
+
+		<div class="buttons">
+			<button class="button button-icon icon ion-plus-round" ng-click="abreModalEvento()"></button>
+		</div>
+	</div>
+
+	<ion-content>
+		<h1 class="text-center">Opções</h1>
+
+		<ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+			<ion-item ng-repeat="lista in visualizaEvento | orderBy:'data_evento'" item="lista" class="item-remove-animate item-thumbnail-left">
+
+				<img src="{{baseUrlImagem}}/eventos/{{lista.imagem}}" alt="" class="img-radius">
+				<h2>{{lista.titulo}}</h2>
+				<p>{{lista.descricao}}</p>
+				<p>Data do Evento: {{lista.data_evento | date:"dd-MM-yyyy"}}</p>
+				<p>Status: {{lista.situacao}}</p>
+
+				<ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(lista)">
+				</ion-delete-button>
+
+				<ion-option-button class="button-energized" ng-click="exibirEditar(lista)">
+					Editar
+				</ion-option-button>
+
+			</ion-item>
+		</ion-list>
+
+		<!-- Modal add e editar notícias -->
+		<script id="modal-evento.html" type="text/ng-template">
+			<ion-modal-view>
+
+				<ion-header-bar align-title="center" class="bar-dark">
+					<div class="buttons">
+						<button class="button button-clear icon ion-arrow-left-c" ng-click="fechaModalEvento()"></button>
+					</div>
+					<h1 class="title" ng-hide="novoEvento.btnEditar">Adicionar Evento</h1>
+					<h1 class="title" ng-show="novoEvento.btnEditar">Editar Evento</h1>
+				</ion-header-bar>
+
+				<ion-content>
+
+					<div class="list">
+						<label class="item item-input item-floating-label">
+							<span class="input-label label-login">Título</span>
+							<input type="text" class="input-login" placeholder="Título" ng-model="novoEvento.titulo">
+						</label>
+
+						<label class="item item-input item-floating-label">
+							<span class="input-label label-login">Descrição</span>
+							<input type="text" class="input-login" placeholder="Descrição" ng-model="novoEvento.descricao">
+						</label>
+
+						<label class="item item-input item-floating-label">
+							<span class="input-label label-login">Data do Evento</span>
+							<input type="text" class="input-login" placeholder="Data do Evento" ng-model="novoEvento.data_evento" ui-date-mask="DD-MM-YYYY">
+						</label>
+
+						<label class="item item-input item-floating-label">
+							<span class="input-label label-login">Status</span>
+							<input type="text" class="input-login" placeholder="Status" ng-model="novoEvento.situacao">
+						</label>
+
+						<div class="fileUpload btn btn-positive btn-full ion-image">
+							<span>Imagem</span>
+							<input type="file" class="upload" placeholder="Imagem" id="imagemEvento">
+						</div>
+					</div>
+
+					<button type="button" class="button button-light button-outline button-full" ng-hide="novoEvento.btnEditar" ng-click="inserirEvento(novoEvento)">
+						Salvar
+					</button>
+
+					<button type="button" class="button button-energized button-outline button-full" ng-show="novoEvento.btnEditar" ng-click="editarEvento(novoEvento)">
+						Editar
+					</button>  
+
+				</ion-content>
+
+			</ion-modal-view>
+		</script>
+
+	</ion-content>
+</ion-view>
