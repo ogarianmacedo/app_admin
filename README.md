@@ -1,3 +1,3 @@
 # app_admin
 
-Aplicativo Ionic Framework - Área Administrativa
+Projeto Livre - aplicativo mobile com Ionic v1
