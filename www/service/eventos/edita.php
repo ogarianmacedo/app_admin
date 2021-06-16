@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $obj = json_decode(file_get_contents('php://input'), true);
 
@@ -16,27 +16,21 @@ $imagem = $evento['imagem'];
 $data_evento = $evento['data_evento'];
 $situacao = $evento['situacao'];
 
-try{
-
+try {
 	$con->beginTransaction();
 
 	if (!empty($id_evento)) {
-
 		$sql = "UPDATE tb_evento SET titulo ='$titulo', descricao = '$descricao', imagem = '$imagem', data_evento = '$data_evento', situacao = '$situacao' WHERE id_evento = $id_evento";
 
 		$stmt = $con->prepare($sql);
 		$stmt->execute();
 
 		echo "nevento_alterado";
-
-	}else{
+	} else {
 		echo "nao_alterou";
 	}
 
 	$con->commit();
-
-}catch(Exception $e){
+} catch (Exception $e) {
 	$con->rollback();
 }
-
-?>

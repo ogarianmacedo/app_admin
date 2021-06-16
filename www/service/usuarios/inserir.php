@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $obj = json_decode(file_get_contents('php://input'), true);
 
@@ -14,28 +14,18 @@ $usuario = $user['usuario'];
 $senha = $user['senha'];
 $imagem = $user['imagem'];
 
-try{
-
+try {
 	$con->beginTransaction();
 
 	$sql = $con->exec("INSERT INTO tb_usuario (nome, email, usuario, senha, imagem) VALUES ('$nome', '$email', '$usuario', '$senha', '$imagem')");
 
-	// echo "INSERT INTO tb_usuario (nome, email, usuario, senha, imagem) VALUES ('$nome', '$email', '$usuario', '$senha', '$imagem')";
-
-	if($sql){
+	if ($sql) {
 		echo "usuario_cadastrado";
-	}else{
+	} else {
 		echo "usuario_nao_cadastrado";
 	}
 
 	$con->commit();
-
-
-}catch(Exception $e){
+} catch (Exception $e) {
 	$con->rollback();
-	var_dump($e);
 }
-
-?>
-
-

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $obj = json_decode(file_get_contents('php://input'), true);
 
@@ -14,23 +14,18 @@ $descricao = $noticia['descricao'];
 $imagem = $noticia['imagem'];
 $data_criacao = $noticia['data_criacao'];
 
-try{
-
+try {
 	$con->beginTransaction();
 
 	$sql = $con->exec("INSERT INTO tb_noticia (titulo, descricao, imagem, data_criacao) VALUES ('$titulo', '$descricao', '$imagem', NOW())");
 
 	if ($sql) {
 		echo "noticia_cadastrada";
-	}else{
+	} else {
 		echo "nao_cadastrou";
 	}
 
 	$con->commit();
-
-}catch(Exception $e){
+} catch (Exception $e) {
 	$con->rollback();
-	var_dump($e);
 }
-
-?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $obj = json_decode(file_get_contents('php://input'), true);
 
@@ -16,27 +16,22 @@ $usuario = $user['usuario'];
 $senha = $user['senha'];
 $imagem = $user['imagem'];
 
-try{
-
+try {
 	$con->beginTransaction();
 
-	if(!empty($id_usuario)){
+	if (!empty($id_usuario)) {
 
-		$sql = "UPDATE tb_usuario SET nome = '$nome', email = '$email', usuario = '$usuario', senha = '$senha', imagem = '$imagem' WHERE id_usuario = $id_usuario";		
+		$sql = "UPDATE tb_usuario SET nome = '$nome', email = '$email', usuario = '$usuario', senha = '$senha', imagem = '$imagem' WHERE id_usuario = $id_usuario";
 
 		$stmt = $con->prepare($sql);
 		$stmt->execute();
 
 		echo "usuario_alterado";
-
-	}else{
+	} else {
 		echo "nao_alterado";
 	}
 
 	$con->commit();
-
-}catch(Excption $e){
+} catch (Exception $e) {
 	$con->rollback();
 }
-
-?>
